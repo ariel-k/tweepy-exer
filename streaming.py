@@ -5,15 +5,10 @@ from pymongo import MongoClient
 
 MONGO_HOST= 'mongodb://localhost:27017'
 
-client = pymongo.MongoClient("mongodb://localhost:27017/")
-db = client["customersdb"]
-customers = db["customers"]
-
-CONSUMER_KEY = "KEY"
-CONSUMER_SECRET = "SECRET"
-ACCESS_TOKEN = "TOKEN"
-ACCESS_TOKEN_SECRET = "TOKEN_SECRET"
-
+CONSUMER_KEY = "VTsMr4wVY2uCaJf5Y8SGHhLOk"
+CONSUMER_SECRET = "GDatoWbu3akP1C8ZCw9ShwcIZFgaKOQ5pD1LWi8NjWbdkRmt6g"
+ACCESS_TOKEN = "1206531229300019201-u1m8qlRyruKp1hC8tGeQAud7LSlgzj"
+ACCESS_TOKEN_SECRET = "3zUX38inYV8FlwTBxT8eZNuJdFFMKX8AD7yrE2GvDzcNq"
 
 class StreamListener(tweepy.StreamListener):    
     #This is a class provided by tweepy to access the Twitter Streaming API. 
