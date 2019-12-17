@@ -15,8 +15,7 @@ services:
       - backend
   tweepy:
     build:
-      context: ${PWD}
-      dockerfile: Dockerfile-tweepy
+      context: ./tweepy
     container_name: tweepy
     restart: always
     environment:
@@ -26,6 +25,27 @@ services:
       - ACCESS_TOKEN_SECRET="3zUX38inYV8FlwTBxT8eZNuJdFFMKX8AD7yrE2GvDzcNq"
     links:
       - mongodb
+    networks:
+      - backend
+  query:
+    build:
+      context: ./query
+    container_name: query
+    restart: always
+    volumes:
+      - ./htdocs/index.html:/tmp/index.html
+    links:
+      - mongodb
+    networks:
+      - backend
+  apache:
+    image: httpd:2.4
+    container_name: apache
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - ./htdocs/index.html:/usr/local/apache2/htdocs/index.html
     networks:
       - backend
 networks:

@@ -46,6 +46,8 @@ class StreamListener(tweepy.StreamListener):
         except Exception as e:
            print(e)
 
+    def check(self):
+        
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 #Set up the listener. The 'wait_on_rate_limit=True' is needed to help with Twitter API rate limiting.
