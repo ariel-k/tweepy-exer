@@ -1,13 +1,32 @@
-version: '2'
+version: '3.2'
 services:
   mongodb:
     image: mongo:latest
     container_name: mongodb
     restart: always
     environment:
-      MONGO_INITDB_DATABASE: twitter-db
+      MONGO_INITDB_DATABASE: twitterdb
     ports:
       - 27017:27017
     volumes:
       - ./mongo-entrypoint:/docker-entrypoint-initdb.d
       - ~/data:/data/db
+    networks:
+      - backend
+  tweepy:
+    build:
+      context: ${PWD}
+    container_name: tweepy
+    restart: always
+    environment:
+      - CONSUMER_KEY="VTsMr4wVY2uCaJf5Y8SGHhLOk"
+      - CONSUMER_SECRET="GDatoWbu3akP1C8ZCw9ShwcIZFgaKOQ5pD1LWi8NjWbdkRmt6g"
+      - ACCESS_TOKEN="1206531229300019201-u1m8qlRyruKp1hC8tGeQAud7LSlgzj"
+      - ACCESS_TOKEN_SECRET="3zUX38inYV8FlwTBxT8eZNuJdFFMKX8AD7yrE2GvDzcNq"
+    links:
+      - mongodb
+    networks:
+      - backend
+networks:
+  backend:
+    driver: "bridge"
