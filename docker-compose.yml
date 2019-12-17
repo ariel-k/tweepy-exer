@@ -27,27 +27,6 @@ services:
       - mongodb
     networks:
       - backend
-  query:
-    build:
-      context: ./query
-    container_name: query
-    restart: always
-    volumes:
-      - ./htdocs/index.html:/tmp/index.html
-    links:
-      - mongodb
-    networks:
-      - backend
-  apache:
-    image: httpd:2.4
-    container_name: apache
-    restart: always
-    ports:
-      - 80:80
-    volumes:
-      - ./htdocs/index.html:/usr/local/apache2/htdocs/index.html
-    networks:
-      - backend
 networks:
   backend:
     driver: "bridge"
