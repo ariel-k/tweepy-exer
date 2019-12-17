@@ -16,6 +16,7 @@ services:
   tweepy:
     build:
       context: ${PWD}
+      dockerfile: Dockerfile-tweepy
     container_name: tweepy
     restart: always
     environment:
