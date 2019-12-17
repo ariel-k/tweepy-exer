@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from pymongo import MongoClient, changeStream
 
-MONGO_HOST= 'localhost:27017'
+MONGO_HOST= 'mongodb:27017'
 client = MongoClient(MONGO_HOST)
 db = client.twitterdb
 col = db.twitterMessagesDocker
