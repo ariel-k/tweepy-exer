@@ -42,7 +42,7 @@ class StreamListener(tweepy.StreamListener):
 
             #insert the data into the mongoDB into a collection called twitterMessagesDocker
             #if twitterMessagesDocker doesn't exist, it will be created.
-            db.twitterMessagesDocker.insert(datajson)
+            db.twitterMessagesDocker.insert_one(datajson)
         except Exception as e:
            print(e)
 
