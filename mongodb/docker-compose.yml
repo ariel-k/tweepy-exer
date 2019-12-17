@@ -9,5 +9,5 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - ./mongo-init-test.js:/tmp/test.js
+      - ./mongo-entrypoint:/docker-entrypoint-initdb.d
       - ~/data:/data/db
