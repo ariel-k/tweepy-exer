@@ -14,7 +14,7 @@ services:
     networks:
       - backend
   tweepy:
-    build: 
+    build:
       context: ./tweepy
     container_name: tweepy
     restart: always
@@ -34,7 +34,7 @@ services:
     restart: always
     links:
       - mongodb
-    volumes: 
+    volumes:
       - ./usernames.html:/tmp/usernames.html
     networks:
       - backend
@@ -48,7 +48,15 @@ services:
       - ./usernames.html:/usr/local/apache2/htdocs/index.html
     networks:
       - backend
+  ngrok:
+    image: wernight/ngrok
+    container_name: ngrok
+    ports:
+      - 4040:4040
+    command: ngrok http apache:80
+    networks:
+      - backend
 networks:
   backend:
     driver: "bridge"
-
+      
