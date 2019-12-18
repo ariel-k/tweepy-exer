@@ -1,0 +1,9 @@
+# was part of the docker-compsoe file for publish the apache container to the external network
+ngrok:
+    image: wernight/ngrok
+    container_name: ngrok
+    ports:
+      - 4040:4040
+    command: ngrok http apache:80
+    networks:
+      - backend

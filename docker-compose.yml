@@ -48,14 +48,6 @@ services:
       - ./usernames.html:/usr/local/apache2/htdocs/index.html
     networks:
       - backend
-  ngrok:
-    image: wernight/ngrok
-    container_name: ngrok
-    ports:
-      - 4040:4040
-    command: ngrok http apache:80
-    networks:
-      - backend
 networks:
   backend:
     driver: "bridge"
