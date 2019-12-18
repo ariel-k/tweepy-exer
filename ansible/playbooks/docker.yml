@@ -1,0 +1,41 @@
+# the playbook runs on the localhost
+- name: Install Docker on Host
+  gather_facts: No
+  hosts: localhost
+ # installs packages for docker
+  tasks:
+    - name: Install yum utils
+      yum:
+        name: yum-utils
+        state: latest
+ 
+    - name: Install device-mapper-persistent-data
+      yum:
+        name: device-mapper-persistent-data
+        state: latest
+ 
+    - name: Install lvm2
+      yum:
+        name: lvm2
+        state: latest
+ # adds docker repository
+    - name: Add Docker repo
+      get_url:
+        url: https://download.docker.com/linux/centos/docker-ce.repo
+        dest: /etc/yum.repos.d/docker-ce.repo
+      become: yes
+ # install docker
+    - name: Install Docker
+      package:
+        name: docker-ce
+        state: latest
+      become: yes
+ # start docker service
+    - name: Start Docker service
+      service:
+        name: docker
+        state: started
+        enabled: yes
+      become: yes
+ 
+
