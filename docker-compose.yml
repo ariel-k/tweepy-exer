@@ -1,4 +1,4 @@
-version: '3.2'
+version: '3.1'
 services:
   mongodb:
     image: mongo:latest
@@ -14,19 +14,41 @@ services:
     networks:
       - backend
   tweepy:
-    build:
+    build: 
       context: ./tweepy
     container_name: tweepy
     restart: always
     environment:
-      - CONSUMER_KEY="VTsMr4wVY2uCaJf5Y8SGHhLOk"
-      - CONSUMER_SECRET="GDatoWbu3akP1C8ZCw9ShwcIZFgaKOQ5pD1LWi8NjWbdkRmt6g"
+      - CONSUMER_KEY="jI33n8S65TccdRvulbunjA4kh"
+      - CONSUMER_SECRET="6r6AsE8FXdoIDikb8NZn1IIqJsCO8eoePz1OVH2ekelApnxmVW"
       - ACCESS_TOKEN="1206531229300019201-u1m8qlRyruKp1hC8tGeQAud7LSlgzj"
       - ACCESS_TOKEN_SECRET="3zUX38inYV8FlwTBxT8eZNuJdFFMKX8AD7yrE2GvDzcNq"
     links:
       - mongodb
     networks:
       - backend
+  query:
+    build:
+      context: ./query
+    container_name: query
+    restart: always
+    links:
+      - mongodb
+    volumes: 
+      - ./usernames.html:/tmp/usernames.html
+    networks:
+      - backend
+  apache:
+    image: httpd:2.4
+    container_name: apache
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - ./usernames.html:/usr/local/apache2/htdocs/index.html
+    networks:
+      - backend
 networks:
   backend:
     driver: "bridge"
+
